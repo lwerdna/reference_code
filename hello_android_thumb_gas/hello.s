@@ -9,8 +9,10 @@ len = . - msg
 
 .text
 
+.globl _start, test
+
 /* Our application's entry point. */
-.globl _start
+.thumb_func
 _start:
     /* syscall write(int fd, const void *buf, size_t count) */
     mov     %r0, $1     /* fd := STDOUT_FILENO */
@@ -23,3 +25,14 @@ _start:
     mov     %r0, $0     /* status := 0 */
     mov     %r7, $1     /* exit is syscall #1 */
     swi     $0          /* invoke syscall */
+
+.thumb_func
+test:
+	ldr		%r0, =0x1AAAAAAA
+	ldr		%r1, =0x1BBBBBBB
+	ldr		%r2, =0x1CCCCCCC
+	ldr		%r3, =0x1DDDDDDD
+	ldr		%r4, =0x1EEEEEEE
+	ldr		%r5, =0x1FFFFFF1
+	bx		%lr
+

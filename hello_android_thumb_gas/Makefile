@@ -1,7 +1,7 @@
 all: hello
 
-NDK = $(HOME)/android-ndk-r15c
-NDK_BIN_PATH = $(NDK)/toolchains/arm-linux-androideabi-4.9/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-
+NDK = $(HOME)/android-ndk-r21d-built
+NDK_BIN_PATH = $(NDK)/bin/arm-linux-androideabi-
 AS = $(NDK_BIN_PATH)as
 LD = $(NDK_BIN_PATH)ld
 OBJDUMP = $(NDK_BIN_PATH)objdump
