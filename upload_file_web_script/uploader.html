@@ -2,8 +2,10 @@
 
 <script src="uploader.js"></script>
 
-<label for="file">File</label>
-<input id="file" name="file" type="file" />
+<form enctype="multipart/form-data">
+  <label for="file">File</label>
+  <input id="file" name="file" type="file" />
+</form>
 
 <button onclick="upload()">Upload</button>
 
