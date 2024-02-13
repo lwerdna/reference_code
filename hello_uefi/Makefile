@@ -1,8 +1,11 @@
-CLANG = $(HOME)/Downloads/clang+llvm-15.0.0-x86_64-apple-darwin/bin/clang
-LD_LLD = $(HOME)/Downloads/clang+llvm-15.0.0-x86_64-apple-darwin/bin/ld.lld
-LLD_LINK = $(HOME)/Downloads/clang+llvm-15.0.0-x86_64-apple-darwin/bin/lld-link
-LD64 = $(HOME)/Downloads/clang+llvm-15.0.0-x86_64-apple-darwin/bin/ld64.lld
-LLC = $(HOME)/Downloads/clang+llvm-15.0.0-x86_64-apple-darwin/bin/llc
+#PATH_CLANG = $(HOME)/Downloads/clang+llvm-15.0.0-x86_64-apple-darwin
+PATH_CLANG = $(HOME)/Downloads/clang+llvm-17.0.1-arm64-apple-darwin22.0
+
+CLANG = $(PATH_CLANG)/bin/clang
+LD_LLD = $(PATH_CLANG)/bin/ld.lld
+LLD_LINK = $(PATH_CLANG)/bin/lld-link
+LD64 = $(PATH_CLANG)/bin/ld64.lld
+LLC = $(PATH_CLANG)/bin/llc
 
 CFLAGS := -ffreestanding -MMD -mno-red-zone -std=c11 -target x86_64-unknown-windows
 LDFLAGS := -flavor link -subsystem:efi_application -entry:efi_main
