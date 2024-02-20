@@ -8,13 +8,18 @@ efi_status_t efi_main(
 	uint16_t msg[] = u"Hello World!";
 	efi_status_t status;
 
-	status = system_table->out->clear_screen(system_table->out);
+	status = system_table->ConOut->clear_screen(system_table->ConOut);
 	if (status != 0)
 		return status;
 
-	status = system_table->out->output_string(system_table->out, msg);
+	status = system_table->ConOut->output_string(system_table->ConOut, msg);
 	if (status != 0)
 		return status;
+
+	while(1)
+	{
+		while(0);
+	}
 
 	return 0;
 }

@@ -8,18 +8,23 @@
 struct efi_system_table
 {
 	struct efi_table_header header;
-	uint16_t *unused1;
-	uint32_t unused2;
-	void *unused3;
-	void *unused4;
-	void *unused5;
-	struct efi_simple_text_output_protocol *out;
-	void *unused6;
-	struct efi_simple_text_output_protocol *err;
-	void *unused8;
-	struct efi_boot_table *boot;
-	efi_uint_t unused10;
-	void *unused11;
+	uint16_t *FirmwareVendor;
+	uint32_t FirmwareRevision;
+
+	void *ConsoleInHandle;
+	void *ConIn;
+
+	void *ConsoleOutputHandle;
+	struct efi_simple_text_output_protocol *ConOut;
+
+	void *StandardErrorHandle;
+	struct efi_simple_text_output_protocol *StdError;
+
+	void *RuntimeServices;
+	struct efi_boot_table *BootServices;
+
+	efi_uint_t NumberOfTableEntries;
+	void *ConfigurationTable;
 };
 
 #endif // __EFI_SYSTEM_TABLE_H__
