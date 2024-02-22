@@ -7,7 +7,7 @@ LLD_LINK = $(PATH_CLANG)/bin/lld-link
 LD64 = $(PATH_CLANG)/bin/ld64.lld
 LLC = $(PATH_CLANG)/bin/llc
 
-CFLAGS := -ffreestanding -MMD -mno-red-zone -std=c11 -target x86_64-unknown-windows
+CFLAGS := -O0 -ffreestanding -MMD -mno-red-zone -std=c11 -target x86_64-unknown-windows
 LDFLAGS := -flavor link -subsystem:efi_application -entry:efi_main
 
 SRCS := main.c
@@ -21,6 +21,7 @@ all: bootx64.efi
 
 bootx64.efi: main.o
 	$(LD_LLD) $(LDFLAGS) $< -out:$@
+	./postprocess.py ./bootx64.efi
 
 -include $(SRCS:.c=.d)
 

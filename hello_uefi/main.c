@@ -8,6 +8,11 @@ efi_status_t efi_main(
 	uint16_t msg[] = u"Hello World!";
 	efi_status_t status;
 
+	__builtin_debugtrap();
+	__builtin_debugtrap();
+	__builtin_debugtrap();
+	__builtin_debugtrap();
+
 	status = system_table->ConOut->clear_screen(system_table->ConOut);
 	if (status != 0)
 		return status;
@@ -15,11 +20,6 @@ efi_status_t efi_main(
 	status = system_table->ConOut->output_string(system_table->ConOut, msg);
 	if (status != 0)
 		return status;
-
-	while(1)
-	{
-		while(0);
-	}
 
 	return 0;
 }

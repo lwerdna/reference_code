@@ -54,7 +54,7 @@ Hello World!
 
 Use ctrl+h instead of backspace when `-nographic`.
 
-I don't know how to exit qemu. In graphical mode, just close window. Otherwise `kill` the pid or `pkill` the process name, like `pkill qemu-system-x86_64`.
+I don't know how to exit qemu. In graphical mode, just close window. Otherwise `kill` the pid or `pkill` the process name, like `pkill qemu-system-x86_64` or `kill` from gdb.
 
 https://krinkinmu.github.io/2020/10/11/efi-getting-started.html
 
