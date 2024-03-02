@@ -21,9 +21,7 @@ all: bootx64.efi
 
 bootx64.efi: main.o
 	$(LD_LLD) $(LDFLAGS) $< -out:$@
-	./postprocess.py ./bootx64.efi
-
--include $(SRCS:.c=.d)
+	#./postprocess.py ./bootx64.efi
 
 clean:
 	rm -f main.o main.d bootx64.efi
