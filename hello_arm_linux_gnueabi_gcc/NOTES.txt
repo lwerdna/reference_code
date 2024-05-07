@@ -1,0 +1,41 @@
+Compile "hello world" using the apt installable packages on Ubuntu.
+
+The confusing world of ARM terminology...
+"el" isn't only "little endian".
+
+"armhf"
+ gcc-arm-linux-gnueabihf  - package
+ arm-linux-gnueabihf-gcc  - compiler binary
+ /lib/ld-linux-armhf.so.3 - interpreter in built ELFs (comes from libc6-armhf-cross)
+ 
+"armel"
+ gcc-arm-linux-gnueabi    - package
+ arm-linux-gnueabi-gcc    - compiler binary
+ /lib/ld-linux.so.3       - interpreter in built ELFs (comes from libc6-armel-cross)
+
+We compile also dynamic (default) vs. static.
+So we have four cases: {armhf, armel} X {static, dynamic}.
+
+hello-armhf under qemu needs path to interpreter (AKA dynamic loader):
+$ qemu-arm ./hello-armhf
+qemu-arm: Could not open '/lib/ld-linux-armhf.so.3': No such file or directory
+$ dpkg -S ld-linux-armhf.so.3
+libc6-armhf-cross: /usr/arm-linux-gnueabihf/lib/ld-linux-armhf.so.3
+$ qemu-arm -L /usr/arm-linux-gnueabihf ./hello-armhf
+Hello, world!
+
+hello-static-armhf under qemu needs nothing, and contains no .interp section:
+$ qemu-arm ./hello-static-armhf
+Hello, world!
+
+hello-armel under qemu needs path to interpeter:
+$ qemu-arm ./hello-armel
+qemu-arm: Could not open '/lib/ld-linux.so.3': No such file or directory
+$ dpkg -S 'ld-linux.so.3'
+libc6-armel-cross: /usr/arm-linux-gnueabi/lib/ld-linux.so.3
+$ qemu-arm -L  /usr/arm-linux-gnueabi ./hello-armel
+Hello, world!
+
+hello-static-armel under qemu needs nothing too:
+$ qemu-arm ./hello-static-armel
+Hello, world!
