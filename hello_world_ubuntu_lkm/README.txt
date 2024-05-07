@@ -25,3 +25,10 @@ Find other targets:
 $ make -C /lib/modules/6.5.0-21-generic/build help
 Like:
 $ make -C /lib/modules/6.5.0-21-generic/build M=`pwd` clean
+
+For buildroot, initiate a linux kernel build.
+If there's been a previous build, you can trigger a new one by:
+`make linux-menuconfig` from buildroot root and toggle some option then `make`.
+Read the CROSS_COMPILE path and use it:
+
+$ ARCH=arm CROSS_COMPILE="/home/andrewl/Downloads/buildroot-2013.11/output/host/usr/bin/arm-buildroot-linux-uclibcgnueabi-" make -C /home/andrewl/Downloads/buildroot-2013.11/output/build/linux-3.10 M=`pwd` modules
