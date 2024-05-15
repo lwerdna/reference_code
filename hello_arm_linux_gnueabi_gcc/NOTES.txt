@@ -7,11 +7,13 @@ The confusing world of ARM terminology...
  gcc-arm-linux-gnueabihf  - package
  arm-linux-gnueabihf-gcc  - compiler binary
  /lib/ld-linux-armhf.so.3 - interpreter in built ELFs (comes from libc6-armhf-cross)
+                            (placed in /usr/arm-linux-gnueabihf/lib/ld-linux.so.3)
  
 "armel"
  gcc-arm-linux-gnueabi    - package
  arm-linux-gnueabi-gcc    - compiler binary
  /lib/ld-linux.so.3       - interpreter in built ELFs (comes from libc6-armel-cross)
+                            (placed in /usr/arm-linux-gnueabi/lib/ld-linux.so.3)
 
 We compile also dynamic (default) vs. static.
 So we have four cases: {armhf, armel} X {static, dynamic}.
