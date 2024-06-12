@@ -1,0 +1,30 @@
+Compile "hello world" using the apt installable packages on Ubuntu.
+
+ gcc-arm-linux-gnueabihf    - package
+ arm-linux-gnueabihf-gcc    - compiler binary
+ /lib/ld-linux-aarch64.so.1 - interpreter in built ELFs (comes from libc6-arm64-cross)
+                            (placed in /usr/arm-linux-gnueabihf/lib/ld-linux.so.3)
+ 
+hello-aarch64 under qemu needs path to interpreter (AKA dynamic loader):
+$ qemu-aarch64 ./hello-aarch64
+qemu-aarch64: Could not open '/lib/ld-linux-aarch64.so.1': No such file or directory
+
+Where to find this?
+$ dpkg -S ld-linux-aarch64.so.1
+libc6-arm64-cross: /usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1
+
+Install it:
+$ sudo apt install libc6-arm64-cross
+
+Where does it get placed?
+$ dpkg-query -L libc6-arm64-cross | grep ld-linux-aarch64.so.1
+/usr/aarch64-linux-gnu/lib/ld-linux-aarch64.so.1
+
+Invoke qemu again with elf interpreter prefix:
+$ qemu-aarch64 -L /usr/aarch64-linux-gnu ./hello-aarch64
+Hello, world!
+
+hello-static-aarch64 under qemu needs nothing, and contains no .interp section:
+$ qemu-aarch64 ./hello-static-aarch64
+Hello, world!
+
